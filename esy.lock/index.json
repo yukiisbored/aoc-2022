@@ -1,0 +1,33 @@
+{
+  "checksum": "a5195d8affae97f6b6251e45314cea63",
+  "root": "aoc-2022@link-dev:./package.json",
+  "node": {
+    "ocaml@4.14.0@d41d8cd9": {
+      "id": "ocaml@4.14.0@d41d8cd9",
+      "name": "ocaml",
+      "version": "4.14.0",
+      "source": {
+        "type": "install",
+        "source": [
+          "archive:https://registry.npmjs.org/ocaml/-/ocaml-4.14.0.tgz#sha1:619afaeabcc8732cc1f4014a7251403927f44021"
+        ]
+      },
+      "overrides": [],
+      "dependencies": [],
+      "devDependencies": []
+    },
+    "aoc-2022@link-dev:./package.json": {
+      "id": "aoc-2022@link-dev:./package.json",
+      "name": "aoc-2022",
+      "version": "link-dev:./package.json",
+      "source": {
+        "type": "link-dev",
+        "path": ".",
+        "manifest": "package.json"
+      },
+      "overrides": [],
+      "dependencies": [ "ocaml@4.14.0@d41d8cd9" ],
+      "devDependencies": []
+    }
+  }
+}
