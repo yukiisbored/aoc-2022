@@ -16,20 +16,19 @@ let part1 lines =
   List.map ~f lines |> List.fold ~init:0 ~f:( + ) |> string_of_int
 
 let part2 lines =
-  let grouper (acc : string list list) (line : string) =
-    let t = List.hd_exn acc in
-    if Int.(List.length t = 3) then [ line ] :: acc
-    else (line :: t) :: List.tl_exn acc
-  in
-  List.fold ~init:[ [] ] ~f:grouper lines
-  |> List.map
-       ~f:(List.map ~f:(fun x -> String.to_list x |> Set.of_list (module Char)))
+  List.fold ~init:[ [] ]
+    ~f:(fun acc line ->
+      let f x = String.to_list x |> Set.of_list (module Char) in
+      match acc with
+      | [ _; _; _ ] :: _ -> [ f line ] :: acc
+      | hs :: ts -> (f line :: hs) :: ts
+      | _ -> failwith "unreachable")
+    lines
   |> List.map ~f:(function
        | [ x; y; z ] ->
            Set.inter x y |> Set.inter z |> Set.choose_exn |> to_prio_int
        | _ -> failwith "unreachable")
-  |> List.fold ~init:0 ~f:( + )
-  |> string_of_int
+  |> List.fold ~init:0 ~f:( + ) |> string_of_int
 
 let solvercmd summary solver =
   Command.basic ~summary
