@@ -12,13 +12,13 @@ let part1 lines =
     parse line |> fun ((b1, t1), (b2, t2)) ->
     Int.((b1 >= b2 && t1 <= t2) || (b2 >= b1 && t2 <= t1))
   in
-  List.map ~f lines |> List.count ~f:Fn.id
+  List.count ~f lines
 
 let part2 lines =
   let f line =
     parse line |> fun ((b1, t1), (b2, t2)) -> Int.(b1 <= t2 && b2 <= t1)
   in
-  List.map ~f lines |> List.count ~f:Fn.id
+  List.count ~f lines
 
 let command =
   let sub summary solver =
